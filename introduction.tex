@@ -133,7 +133,7 @@ The bookkeeping is important because of several reasons. In the bookkeeping syst
   \item the statistics which are generated using the data.
 \end{itemize}
 
-The bookkeeping system is also used to search and select specific data concerning these runs. Questions such as `which runs included detector X?' or `which data sets should I use for my analysis?'. Furthermore, it is used for manually and automaticaly generating data about for instance how much data was collected during a given period or the efficiency during a period.
+The bookkeeping system is also used to search and select specific information concerning these runs. Questions such as `which runs included detector X?' or `which data sets should I use for my analysis?'. Furthermore, it is used for manually and automatically generate reports about for instance how much data was collected during a given period or the efficiency during a period.
 
 Momentarily there are two systems which are part of the bookkeeping system:
 \begin{itemize}
@@ -143,36 +143,34 @@ Momentarily there are two systems which are part of the bookkeeping system:
 A few scattered repositories are also used. These are mainly human-curated web pages.
 
 
-\subsubsection{The electronic logbook}
-The logbook is gathering data in synchronous mode i.e. synchronous with the LHC operations. These log entries are created by:
+\subsubsection{The ALICE Electronic Logbook}
+The ALICE Electronic Logbook stores text based reports on interventions and incidents called Log Entries. These Log Entries are typically created by:
 \begin{itemize}
-  \item run coordinator (and deputy), shift leader and shifters which are 24/7 present when data is taken in.
-  \item technical coordination, for cooling etc.
-  \item detector teams for expert interventions (during on call interventions)
-  \item automatically by elements of the machine.
+  \item run coordinator (and deputy), shift leader and shifters which are 24/7 present in the control room,
+  \item technical coordination, for cooling, infrastructure etc,
+  \item detector teams for expert interventions,
+  \item automatically by software elements of the different subsystems.
 \end{itemize}
 
-In the logbook are online configurations and statistics of the:
+The logbook also stores online configurations and statistics of the:
 \begin{itemize}
   \item Data Acquisition system (DAQ),
   \item High Level Trigger (HLT),
   \item Trigger,
-  \item Large Hydron Collider (LHC),
-  \item Detector Monitoring Systems (TPC etc.),
-  \item runs where the runnumber is always a positive integer,
-  \item LHC fills.
+  \item Large Hadron Collider (LHC),
+  \item Detectors (TPC etc.).
 \end{itemize}
 
 In all the logbook has approximately
 \begin{itemize}
-  \item 37 GB data,
+  \item 37 GB of metadata,
   \item 195,000 log entries,
   \item 20,000 file attachments,
   \item 280,000 runs
   \item 5,000 LHC fills
 \end{itemize}
 
-For this it uses a MySQL database with 27 tables and 312 fields. This is a single instance which is daily copied for external uses. Back-ups are sent to CERN-IT. The logbook has several APIs:
+For this it uses a MySQL database with 27 tables and 312 fields. There is a single instance for online usage and a daily copy for external uses. Back-ups are sent to CERN-IT. The logbook has several APIs:
 \begin{itemize}
   \item C for core software,
   \item DIM for detector teams,
@@ -183,21 +181,22 @@ The Web GUI was created by using PHP on the server side. For this no framework i
 
 \subsubsection{AliMonitor}
 
-The AliMonitor is for bookkeeping of the Grid operations done to process data with the goal discerning data usable for (specific) physics analysis and data which is not. The AliMonitor is operating in an asynchronous mode, i.e. asynchronous with the LHC operations. The Grid is composed of Tier 0 and Tier 1 computers located at CERN and Budapest (Tier 0) and at 10 other places around the world (such as SARA and Nikhef in Amsterdam) for Tier 1. Users of AliMonitor are:
+aliMonitor is used for bookkeeping of the Grid operations done for data reconstruction, simulation, calibration and Quality Assurance.  The Grid is composed of Tier 0 and Tier 1 computer farms located at CERN and Budapest (Tier 0) and at 10 other places around the world (such as SARA and Nikhef in Amsterdam) for Tier 1. Users of AliMonitor are:
 \begin{itemize}
-  \item Data Preparation Group (DPG) to do reconstruction and simulation,
+  \item Data Preparation Group (DPG) to organize reconstruction and simulation,
   \item Physics Working Groups for simulation and analysis
   \item ALICE physicists for simulation and analysis.
 \end{itemize}
-The activities done on the Grid are called jobs. A masterjob is loosely coupled on a run. Each masterjob is composed of subjobs which are loosely coupled on raw files. These jobs can be reconstruction passes and Monte Carlo (MC) productions. Reconstruction is done to adjust the data and get rid of biasses always present due to imperfection of the detectors. For example, it is known that the TPC for muons a bias of 5 microns creates. This is being corrected during reconstruction. Although a lot of these jobs are automated, human intervention is possible.
 
-The calibration and correction of raw data is not a one time event but can be done several times because of several reasons. It is possible that it is discovered that there is a specific bias in the data which should be corrected or it is possible someone creates a better algorithm, etc. The re-calibration is now being done within months. In the future it might be possible it will be done within hours because a part of the reconstruction will be done online. Because it is possible that data will be re-calibrated maybe even as often as 20 time the new bookkeeping system should be so flexible it can handle various scenarios.
+The activities done on the Grid are called jobs. A masterjob is loosely coupled to a run. Each masterjob is composed of subjobs which are loosely coupled on raw files. These jobs can be reconstruction passes and Monte Carlo (MC) productions. Reconstruction is done to adjust the data and correct biases present due to imperfections of the detectors. Although a lot of these jobs are automated, human intervention is possible and sometimes necessary.
 
-When different jobs are being done on the same data, so called trains are made. These trains are a sequence of wagons each representing a job which process all the same data. From the viewpoint of efficiency this makes a lot of sense. The LPM initiates this sort of operations.
+The calibration and correction of raw data is not a one time event but can be done several times because of several reasons. It is possible that it is discovered that there is a specific bias in the data which should be corrected or it is possible that someone creates a better algorithm, etc. The re-calibration is currently being done within months. In the future it might be possible to do it within hours because a part of the reconstruction will already be done online. Because it is possible that data will be re-calibrated maybe even as often as 20 time the new bookkeeping system should be flexible enough to handle various scenarios.
 
-In all there is 97 GB data. There are 12.9 million master jobs (1 million simulation, 225,000 reconstruction, 5 million organised analysis and 6.5 million user jobs). There are 1 billion subjobs which are not stored permanently but summarized per master job. In the (Lightweight Process Manager) LPM there are 56,000 processing chains which are grouped in 13,000 job types (aka productions).
+When different jobs are being done on the same data, they are put together in so called trains. These trains are a sequence of wagons each representing a job and all jobs process the same data. From the viewpoint of efficiency this makes a lot of sense. Currently, a tool called Lightweight Process Manager (LPM) initiates this sort of operations.
 
-AliMonitor is using a PostgreSQL database with about 30 tables. It has two instances which are periodically back-upped. There are APIs for JDBC to be used for core processes and HTTP for csv- and XML-files. The web GUI is realised by a Tomcat webserver using Java Server Pages.
+In all there is 97 GB of metadata. There are 12.9 million master jobs (1 million simulation, 225,000 reconstruction, 5 million organised analysis and 6.5 million user jobs). There are 1 billion subjobs which are not accounted for permanently but summarized per master job. In the LPM there are 56,000 processing chains which are grouped in 13,000 job types (aka productions).
+
+AliMonitor is using a PostgreSQL database with about 30 tables. It has two instances which are periodically backed up. There are APIs for JDBC used by core processes and HTTP for csv- and XML-files. The web GUI runs on a Tomcat webserver using Java Server Pages.
 
 \subsubsection{Scattered repositories}
 There are a few scattered repositories such as:
@@ -207,7 +206,7 @@ There are a few scattered repositories such as:
 \end{itemize}
 
 \subsubsection{Reconstruction and Monte Carlo Simulations}
-when the signals from the detectors are gathered, a process of reconstruction starts to create data. This data is compared to the data created with Monte Carlo simulations to detect whether the raw data, i.e. from the detector, is of interest for further research. 
+When the signals from the detectors are gathered, a process of reconstruction starts to create data. This data is compared to the data created with Monte Carlo simulations to detect whether the raw data, i.e. from the detector, is of interest for further research. 
 
 \begin{figure}[h]
   \begin{center}
