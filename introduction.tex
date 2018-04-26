@@ -60,19 +60,16 @@ Physicists from all over the world are doing analyses on the reconstructed data 
 
 
 \section{The ALICE upgrade}
-After the LS 2 the LHC produce Pb–Pb collisions at up to $L = 6.10^{27} cm^{-2} s^{-1}$. This results in an interaction rate of 50kHz. During Run 3 (2021-2023) pp collisions will be done at 14 TeV and Pb-Pb collisions at 5.5 TeV. In 2023 no Pb-Pb collisions are scheduled. After LS 3 (2024-2026) the same schedule will be realised except for 2028 when p-Pb will be run at 8.8 TeV.
-
-During the LS 2 ALICE will be upgraded. The upgrade will be done on many subsystems:
+During LS2, ALICE will be upgraded. The upgrade will be done on many subsystems:
 \begin{description}
-  \item[ITS] A new Inner Tracking System will be installed. This new system will have an improved pointing precision. It will also be made of lesser material than before and become the thinnest tracker at the LHC.
-  \item[TPC] The Time Projection Chamber will get new GEM technology for the read out chambers. The readout will be continuous and it will use faster readout electronics.
   \item[CTP] A new Central Trigger Processor will be installed.
-  \item[DAQ] A brand new Data Acquisition system will be installed.
-  \item[HLT] A new High Level Trigger will be installed.
-  \item[MFT] In the Muon Forward Tracker a new SI tracker will be installed. The MUON pointing precision will be improved.
-  \item[MUON ARM] The MUON ARM will get new continuous readout electronics.
-  \item[FIT] There will be a new First Interaction Trigger installed.
-  \item[TOF] The Time Of Flight detector will be read out faster.
+  \item[FIT] New Fast Interaction Trigger detector providing minimum bias trigger to the experiment.
+  \item[ITS] A new Inner Tracking System will be installed. This new system will have an improved pointing precision. It will also be made of less material than before and become the thinnest tracker at the LHC.
+  \item[MFT] A new Silicon tracker located between the ITS and the front absorber to improve Muon pointing precision.
+  \item[MCH] The Muon arm will get new continuous readout electronics.
+  \item[O2] A new computing system will be installed, combining the traditional functions of Data Acquisition (DAQ), High Level Trigger (HLT) and Offline.
+  \item[TOF] The Time Of Flight detector will have new and faster readout electronics.
+  \item[TPC] The Time Projection Chamber will use new GEM technology for the readout chambers. The readout will be continuous and it will use faster readout electronics.
   \item[TRD] The Transition Radiation Detector will be read out faster.
   \item[ZDC] The Zero Degree Calorimeter will be read out faster.
 \end{description}
@@ -84,14 +81,14 @@ During the LS 2 ALICE will be upgraded. The upgrade will be done on many subsyst
     \label{fig:overview}
   \end{center}
 \end{figure}
-The 50 kHz rate for collisions produces about 100 times more data than was produced in 2010. This will give the physicists the opportunity to detect very rare processes with very small signal over background ratio. Because the triggering techniques are very inefficient if not impossible, support for continuous read-out is developed. Therefore a new computing system, $O^2$, is created. It will read-out the data of all interactions and compress these data intelligently by online reconstruction. The system will be one common online-offline computing system.
+The 50 kHz collision rate will produce about 100 times more data than was produced in 2010. This will give the physicists the opportunity to detect very rare processes with very small signal over background ratio. Because the traditional triggering techniques are very inefficient if not impossible, most detectors will be continuously read-out. Therefore, a new computing system, $O^2$, is being developed. It will read-out the data of all interactions and compress these data intelligently by online reconstruction. The system will merge the traditional Online and Offline functions.
 
-Unmodified raw data of all interactions will be shipped from the detectors to the online farm in triggerless continuous mode. This  amounts to 3.4 TB/s. Then a baseline correction and zero suppression will take place. The data volume will be reduced by zero cluster finder. No event is discarded. The average compression factor is 6.6. Then 500 GB/s will be shipped. A data volume reduction is done by online tracking. Only reconstructed data will be send to data storage. The average compression factor is 5.5. From here 90 GB/s will be transported. In the data storage one year of compressed data will be kept. From this storage facility 20 GB/s will be transported to tier 0 and tier 1. The events will also be reconstructed for final calibration.
+Unmodified raw data of all interactions will be shipped (via 9000 GBT links) at an aggregated data rate of 3.4 TB/s from the detectors to a first farm of 270 First Level Processor (FLP) nodes equipped with FPGA PCIe cards. In this farm, baseline correction and zero suppression will be applied to reduce the data volume to 500 GB/s. The resulting data will be shipped via a switching network to a second farm of 1500 Event Processing Nodes (EPN) equipped with GPUs, where further data volume reduction will be achieved by online tracking to reach a data rate of 100 GB/s to permanent storage. In the data storage one year of compressed data will be kept. A few hours later, a subsequent reconstruction done either in the EPNs (2/3) or on Grid sites (1/3) with the final calibration will be done.
 
-From the detector electronics 8500 GBTs links will send signals to the 270 FLPs. These will use hardware acceleration using FPGAs. A switching network will distribute this data to 1500 EPNs. These processing nodes use GPUs for hardware acceleration. The EPNs use a switching network to send the data to the storage. This storage can write at 170 GB/s and read at 270 GB/s. The capacity for storage is 60 PB.
+After LS2, the LHC will produce Pb–Pb collisions at up to $L = 6.10^{27} cm^{-2} s^{-1}$, corresponding to an interaction rate of 50kHz. During Run 3 (2021-2023), pp collisions will be done at 14 TeV and Pb-Pb collisions at 5.5 TeV. In 2023, no Pb-Pb collisions are scheduled. After LS3 (2024-2026) the same schedule will be realised except for 2028 when p-Pb will be run at 8.8 TeV.
 
 \subsection{Work packages}
-To manage the $O^2$ update several work packages were created:
+To manage the $O^2$ upgrade, several work packages were created:
 \begin{description}
   \item[WP 1] Data Model
   \item[WP 2] Data Flow and System Simulation
