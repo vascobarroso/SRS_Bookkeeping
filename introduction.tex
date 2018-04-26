@@ -38,6 +38,15 @@ Unmodified raw data of all interactions will be shipped (via 9000 GBT links) at 
 
 After LS2, the LHC will produce Pb–Pb collisions at up to $L = 6.10^{27} cm^{-2} s^{-1}$, corresponding to an interaction rate of 50kHz. During Run 3 (2021-2023), pp collisions will be done at 14 TeV and Pb-Pb collisions at 5.5 TeV. In 2023, no Pb-Pb collisions are scheduled. After LS3 (2024-2026) the same schedule will be realised except for 2028 when p-Pb will be run at 8.8 TeV.
 
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[scale=0.3]{./images/timetable.png}
+    \caption{Time table for the LHC}
+    \label{fig:timetable}
+  \end{center}
+\end{figure}
+
+
 \subsection{Work packages}
 To manage the $O^2$ upgrade, several work packages were created:
 \begin{description}
@@ -83,26 +92,18 @@ Physicists from all over the world are doing analyses on the reconstructed data 
 
 
 \section{Purpose}
-In this section the purpose of the application to build is described. The context of the bookkeeping system is described in the previous section. In this section the reasons for and ideas on the update of the bookkeeping system will be elaborated.
+In this section the purpose of the application is described. Also, the reasons for and ideas on the update of the bookkeeping system will be elaborated.
 
 \subsection{Upgrade of the bookkeeping}
-ALICE will do a major upgrade in 2019/2020 when the Long Shutdown 2 will be done. During this period the new Online-Offline ($O^2$) computer system will be implemented. This gives an opportunity to upgrade the bookkeeping facility currently in use. The bookkeeping currently consists of two not related systems: the Electronic Logbook and AliMonitor. These systems have been developed since 2009 and evolved gradually during the years. Due to this development process the applications are in some ways a bit confusing, not efficient and overall candidates for improvement, let alone their fusion which seems an improvement in itself. In Section XX a description of the current system is given. It seems to be most sensible to do such an during a Long Shutdown because of the overall break in activities at ALICE. New detectors are being installed, the LHC stops running, etc. An update done during a winter break which is always taking place between half December and March would have been a possibility. Doing such an update during run season does not seem to be appropriate because of the importance of the bookkeeping system for ALICE. It is expected that the next opportunity to replace the current systems is over 10 years. That would take too long for the current systems to exist.
+As mentioned before, ALICE will do a major upgrade in 2019/2020 during which the new Online-Offline ($O^2$) computer system will be implemented and deployed. This gives an opportunity to upgrade the bookkeeping facility currently in use, which consists of two separate systems developed since 2009 and improved throughout the years: the ALICE Electronic Logbook and AliMonitor. In \ref{section:Overview of the current bookkeeping} a description of the current system is given. 
 
-\begin{figure}[h]
-  \begin{center}
-    \includegraphics[scale=0.3]{./images/timetable.png}
-    \caption{Time table for the LHC}
-    \label{fig:timetable}
-  \end{center}
-\end{figure}
+The motivation to do an upgrade is threefold. First it makes sense to unify the two systems now used to bookkeeping for ALICE. In this respect it should be mentioned that some users of AliMonitor themselves use separate systems to store information which arguably should be part of the bookkeeping system, e.g. JIRA or Twiki pages. Secondly, although in the years of its existing a lot of features were added, this has not been done anymore since there was the possibility that the system would be replaced. Features which have been mentioned the last few years were only implemented when really needed. This means that there is a list of features not implemented but still wished for. Lastly, because the system was developed starting around 2009 it is based on relatively old technologies. And because of its scale and its importance to the ALICE operations, such a large change in the bookkeeping system of the experiment can only be done together with the LS2 upgrade. This means that, if not upgraded, the bookkeeping system would be 20 years old by the end of Run 4 in 2029.
 
-The motivation to do an upgrade is threefold. First it makes sense to unify the two systems, i.e. the electronic logbook and AliMonitor, now used to bookkeeping for ALICE. In this respect it should be mentioned that some users of AliMonitor themselves use separate systems to store information which arguably should be part of the bookkeeping system, e.g. JIRA. Secondly, although in the years of its existing a lot of features were added, this is not been done anymore since it was clear the system would be replaced. Features which have been mentioned the last few years are only when really needed, implemented. This means that there is a list of features not implemented but still wished for. Lastly, because the system was developed starting around 2009 it is based on relatively old technologies. 
+The goal is to develop a bookkeeping system which is compatible with different media and has a unified look and feel. It should be able to import the data of the current system and be accessible from inside and outside of CERN. The authorisation and authentication should be integrated with the central Single Sign On systems available at CERN. It should be supported as long as it is in use by ALICE, which according to the current schedule means until 2029.
 
-The goal is a bookkeeping system which is responsive to different media used and has a unified look and feel. It should be compatible to the current system and accessible from inside and outside of CERN. The authorisation and authentification should be based on the central systems as made available by CERN. It should be supported as long as it is in use by ALICE.
+There are several challenges for the update of the bookkeeping system. The bookkeeping system is critical to the ALICE operations because it ensures that all interventions are properly documented and all workflows are properly accounted. These workflows which should be registered in the system are quite complex. Because the Amsterdam University of Applied Sciences (AUAS) is a newcomer to the High Energy Physics community a lot has to be learned about vocabulary and jargon. The schedule for the project is also a challenge. At the end of 2019, a first version of the system has to be delivered while the whole system should be in production in 2021. Another difficulty for the project is found in the migration from the existing to the new system. A part of the bookkeeping system concerns the offline activities for data reconstruction, calibration and simulation. This work will not stop during LS2 and therefore a continuous use of the system will take place. Lastly, support for the system will have to be done until 2029.
 
-There are several challenges for the update of the bookkeeping system. The bookkeeping system is critical to the ALICE operations. It is critical because without proper bookkeeping of the data, i.e. bookkeeping the metadata referring to the physics data produced by ALICE, the data itself, i.e. the data produced by the detectors, becomes useless. The workflows which should be registered in the system are quite complex. Because the Amsterdam University of Applied Sciences (AUAS) is a newcomer to the High Energy Physics community a lot has to be learned about vocabulary and jargon. The schedule for the project is also a challenge. At the end of next year (2018) a (small) part of the system has to be delivered while the whole system should be in production in 2021. Another difficulty for the project is found in the migration from the existing to the new tool. A part of the bookkeeping system concerns the offline activity for recovering data and quality control. This work will not stop during the Long Shutdown 2 and for this work to be done a continuous use of the system will take place. Lastly, support for the system will have to be done until 2029.
-
-During Run 1 and 2 a lot of experience concerning the use of the bookkeeping system is accumulated. Developers of the new system have the opportunity to elicit the experience of the past users and use this to their advantage. Modern technologies should make it more easy to develop a bookkeeping system. Because the AUAS is the task owner to create the bookkeeping system it is expected this should generate a lot of energy to make it happen.
+During Run 1 and 2 a lot of experience concerning the use of the bookkeeping system was accumulated. Developers of the new system have the opportunity to elicit the experience of the past users and use this to their advantage. Modern technologies should make it more easy to develop a bookkeeping system. Because the AUAS is the task owner to create the bookkeeping system it is expected this should generate a lot of energy to make it happen.
 
 \subsection{Vision}
 Provide unified bookkeeping experience for operations, run catalogue and management.
