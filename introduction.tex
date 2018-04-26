@@ -63,54 +63,23 @@ To manage the $O^2$ upgrade, several work packages were created:
 The bookkeeping system is part of WP 8. WP 8 has once every two weeks a meeting at Tuesday morning at 10.00 AM. Once every two months the $O^2$ technical board meets. An $O^2$ data model for bookkeeping should be available in January 2018.
 
 
-\section{ALICE activities}
+\section{ALICE activities and workflows}
 
+This section describes the main workflows that the computing system of the experiment will have to handle.
 
-At Point 2 where ALICE is located several activities are done:
-\begin{itemize}
-  \item Detectors are located at Point 2, experts interventions are done 56 meters underground,
-  \item Run Coordination, doing planning of shifts using Shift Accounting and Management System (SAMS),
-  \item Shifts are conducted in the operating room (above ground),
-  \item Central systems which also are visited by experts,
-  \item Technical Coordination which concerns infrastructure and safety such as the cooling system.
-\end{itemize}
+\subsection{Synchronous data taking}
+The synchronous data taking will consist of reading out the data of all detector channels, assembling the different pieces first into subtimeframes (STF) in the FLPs and later into timeframes (EPNs), reducing the data volume via fast reconstruction with temporary calibration and finally writing the resulting compressed timeframes (CTF) to storage.  All this is done in memory and synchronous with LHC operations, therefore downtime in this workflow will results in lost data.
 
-The operation modes of ALICE are to be in:
-\begin{itemize}
-  \item run, 
-  \item calibration mode,
-  \item an operation to calibrate on cosmic rays.
-\end{itemize} 
+\subsection{Asynchronous reconstruction}
+Asynchronous reconstruction will be performed a few hours after the synchronous data taking is finished, once the final calibration sets are made available. Due to lack of resources on the O2 Farm, one third of this workflow will be executed on the Grid. 
 
-
-\subsection{Data Acquisition}
-The Data Acquisition system (DAQ) is handling the data flow from the detector electronics to storage. All this is done in memory and synchronous with LHC operations. Downtime of the DAQ results in lost data. 
-
-\begin{figure}
-  \begin{center}
-    \includegraphics[scale=0.3]{./images/daq.png}
-    \caption{Data flow at ALICE}
-    \label{fig:}
-  \end{center}
-\end{figure}
-
-\subsection{Reconstruction and calibration}
-What is measured in ALICE and its detectors are electrical signals. These signals have to be reconstructed in order to conclude that a particle has been present. The reconstruction has to take the detector conditions into account. This calibration is currently been done offline. In the future this will be done both offline as an asynchronous process and online as a synchronous process. Because the calibration will be an integral part of the online system each delay in this system will have immediate repercussions further up the line and downtime of the computers working on the calibration will result in data loss.
-
-On the same original raw data set multiple reconstruction passes can be done. This can be due to having found a bug in earlier reconstruction software and better software is developed or finding a not yet detected bias in the raw data resulting in a better calibration set. A new calibration set now becomes available within months. In the future this could be within hours. And so the system should be very flexible. It may happen that the same data will be re-calibrated 20 times. The bookkeeping system should keep track of this calibration process.
-
-The Light Production Management runs operations on the offline activities which are done on the Grid. In Figure \ref{fig:offlineWorkflow} the CPasses are dry runs and OAD are Object Analysis Data. Such offline activity is done 24 hours each day of the week and all year along.
-
+On the same original raw data set multiple reconstruction passes can be done. This can be due to a bug in earlier reconstruction software or to the availability of a better calibration set. It may happen that the same data will be re-calibrated 20 times. The bookkeeping system should keep track of this recalibration/reconstruction cycles.
 
 \subsection{Simulation}
-To know which collisions are of interest and what we can learn from these collisions, simulations are created using among other methods the Monte Carlo (MC) statistical method. These simulations are run on the Grid and are completely decoupled from Large Hydron Collider (LHC) operations. Normally such simulations are associated with or anchored to an actual raw data set taken from a run, i.e. the conditions for the run are the same as for the simulations. There is no limit to the number of MC productions for a particular run. A new MC production can be started because of better software becoming available or because the chosen parameters are different.
-
-
+To know which collisions are of interest and what we can learn from these collisions, simulations are created using among other methods the Monte Carlo (MC) statistical method. These simulations will run on the Grid and will therefore be completely decoupled from the LHC operations. Normally such simulations are associated with or anchored to an actual data set taken from a run, i.e. the conditions for the run are replicated for the simulations. There is no limit to the number of MC productions for a particular run. A new MC production can be done because of new software releases or because the chosen parameters changed.
 
 \subsection{Analysis}
-Physicists from all over the world are doing analyses on the reconstructed data and produce papers about their findings. The physicists are the end user of ALICE and the bookkeeping system. The analyses are run on the Grid which is completely decoupled from the LHC operations. Normally these analyses run as trains, i.e. multiple analysis jobs using the same data sets are packed together (as trains consist of various wagons).
-
-
+Physicists from all over the world are doing analyses on the reconstructed data and produce papers about their findings. The physicists are the end user of ALICE and the bookkeeping system. The analyses are run on the Grid which is completely decoupled from the LHC operations. Normally these analyses run as trains, i.e. multiple analysis jobs using the same data sets are packed together (as trains consisting of various wagons).
 
 
 \section{Purpose}
