@@ -13,6 +13,84 @@
   \item each role, user or specific person should have read, write or administration access.\footnote{Roberto Diva}
 \end{enumerate}
 
+\section{Functional requirements}
+
+\subsection{Operational teams}
+\begin{itemize}
+  \item Run Coordination
+  \item Technical Coordination
+  \item Detector experts
+  \item O2 experts
+  \item Trigger
+\end{itemize}
+
+\subsection{Subsystem actors}
+ALICE consists of several subsystems. All these systems are able to create a log entry. The systems are:
+  \begin{itemize}
+    \item ACORDE
+    \item AD
+    \item BCM
+    \item BPTX
+    \item CPV
+    \item CTP
+    \item DAQ
+    \item DAQ\_TEST
+    \item Data Processing
+    \item Central DCS
+    \item DQM/QA
+    \item EMCal
+    \item FMD
+    \item Gas
+    \item General
+    \item HLT
+    \item HMPID
+    \item LHC Interface
+    \item Magnets
+    \item MUON\_TRG
+    \item MUON\_TRK
+    \item Offline
+    \item On Call Interventions
+    \item P2 Info
+    \item PHOS
+    \item PMD
+    \item Run Coordination
+    \item Safety
+    \item SDD
+    \item SPD
+    \item SSD
+    \item TO
+    \item Technical Coordination
+    \item TOF
+    \item TPC
+    \item TPC Upgrade
+    \item TRD
+    \item Trigger
+    \item VO
+    \item ZDC
+  \end{itemize}
+
+A subsystem makes an entry into the database consisting of several items. Each entry records the following items:
+  \begin{itemize}
+    \item time of creation
+    \item which subsystem creates the entry
+    \item which class the creator originates:
+    \begin{itemize}
+      \item process
+    \end{itemize}
+    \item type of entry
+    \begin{itemize}
+      \item general
+      \item EOS
+      \item DCS
+    \end{itemize}
+    \item number of run
+    \item title of the entry
+    \item log entry
+    \item follow ups
+    \item files
+    \item actions
+  \end{itemize}
+
 \subsection{User stories}
 \subsection{User}
 \begin{enumerate}
